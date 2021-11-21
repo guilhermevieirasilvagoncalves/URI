@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <algorithm>
+#include <set>
 
 using namespace std;
 
@@ -10,23 +10,32 @@ int main(){
   string numeros, primeiro;
   while(cin >> N){
     vector<string> listanumeros;
+    multiset<string> listaord;
+    multiset<string>::iterator itr;
+    vector<string> listfinal;
     for(i = 0; i < N; i++){
       cin >> numeros;
       listanumeros.push_back(numeros);
     }
-    sort(listanumeros.begin(), listanumeros.end());
-    primeiro = listanumeros[0];
+    for(i = 0; i < N; i++){
+      listaord.insert(listanumeros[i]);
+    }
+    for(itr = listaord.begin(); itr != listaord.end();++itr){
+      listfinal.push_back(*itr);
+    }
+
+    primeiro = listfinal[0];
     cont = 0;
     for(i = 1; i < N; i++){
       for(j = 0; j < primeiro.length(); j++){
-        if(primeiro[j] == listanumeros[i][j]){
+        if(primeiro[j] == listfinal[i][j]){
           cont++;
         }
         else{
           break;
         }
       }
-      primeiro = listanumeros[i];
+      primeiro = listfinal[i];
     }
     cout << cont << endl;
   }
