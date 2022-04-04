@@ -9,8 +9,7 @@ void scan(int &number){
     number = 0;
  
     c = getchar();
-    if (c=='-')
-    {
+    if (c=='-'){
         negative = true;
  
         c = getchar();
